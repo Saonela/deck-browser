@@ -88,5 +88,14 @@
   },
   "rulesDirectory": [
     "codelyzer"
-  ]
+  ],
+  "whitespace": [
+    false,
+    "check-branch",
+    "check-decl",
+    "check-operator",
+    "check-separator",
+    "check-type"
+  ],
+  "no-trailing-whitespace": true
 }

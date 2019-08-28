@@ -1,10 +1,16 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.sass']
 })
-export class AppComponent {
-  title = 'deck-browser';
+export class AppComponent implements OnInit {
+
+    ngOnInit() {
+    }
+
+    public toggleSidebar() {
+        document.getElementById('sidebar').classList.toggle('active');
+    }
 }
