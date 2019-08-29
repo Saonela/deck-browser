@@ -1,8 +1,7 @@
 const rp = require('request-promise');
 
 const API_URL = 'http://yugiohprices.com/api';
-
-const CARDS_LIST = [
+const CARDS_DECK = [
     'Burial from a Different Dimension',
     'Charge of the Light Brigade',
     'Infernoid Antra',
@@ -25,11 +24,21 @@ const CARDS_LIST = [
     'Void Seer'
 ];
 
-
 class AppController {
     async getCardsList(req, res) {
-        let data = await rp(API_URL + '/card_data/' + CARDS_LIST[0]);
-        res.send({data: JSON.parse(data).data, list: CARDS_LIST});
+        let requestArr = CARDS_DECK.map((cardName) => {
+            return new Promise((resolve, reject) => {
+                rp(API_URL + '/card_data/' + cardName, (error, response, body) => {
+                    if (error) {
+                        reject(err);
+                    }
+                    resolve(JSON.parse(body).data);
+                });
+            });
+        });
+
+        let cardList = await Promise.all(requestArr);
+        res.send(cardList);
     }
 }
 

@@ -1,21 +1,22 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
 import {CardListComponent} from './card-list.component';
 import {CardAPIService} from '../card-api.service';
-import {Observable, of} from 'rxjs';
+import {defer} from 'rxjs';
+import {CardListItemComponent} from './card-list-item/card-list-item.component';
 
-describe('CardListComponent', () => {
+fdescribe('CardListComponent', () => {
     let component: CardListComponent;
     let fixture: ComponentFixture<CardListComponent>;
 
     const mockCardAPIService = {
-        getCards: () => {
-            return of({});
+        getCardList: () => {
+            return defer(() => Promise.resolve([1, 2, 3]));
         }
     };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [CardListComponent],
+            declarations: [CardListComponent, CardListItemComponent],
             providers: [
                 { provide: CardAPIService, useValue: mockCardAPIService }
             ]
@@ -26,10 +27,27 @@ describe('CardListComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(CardListComponent);
         component = fixture.componentInstance;
-        fixture.detectChanges();
     });
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
-    });
+    it('should load card list', fakeAsync((() => {
+        fixture.detectChanges();
+
+        expect(TestHelper.getLoader()).toBeTruthy();
+        expect(TestHelper.getList().length).toBeFalsy();
+
+        tick();
+        fixture.detectChanges();
+
+        expect(TestHelper.getLoader()).toBeFalsy();
+        expect(TestHelper.getList().length).toBe(3);
+    })));
+
+    const TestHelper = {
+        getLoader: () => {
+            return fixture.nativeElement.querySelector('.loader');
+        },
+        getList: () => {
+            return fixture.nativeElement.querySelectorAll('.card-list__item');
+        }
+    };
 });

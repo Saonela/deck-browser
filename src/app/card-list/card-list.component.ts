@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CardAPIService} from '../card-api.service';
+import {Card} from '../models/card.model';
 
 @Component({
     selector: 'app-card-list',
@@ -8,13 +9,23 @@ import {CardAPIService} from '../card-api.service';
 })
 export class CardListComponent implements OnInit {
 
+    public cards: Card[];
+    public loading: boolean = false;
+
     constructor(private cardAPIService: CardAPIService) {
     }
 
     ngOnInit() {
-        this.cardAPIService.getCards().subscribe((res) => {
-            console.log('card', res);
-        });
+        this.getCardList();
     }
 
+    private getCardList() {
+        this.loading = true;
+        this.cardAPIService.getCardList().subscribe((cards: Card[]) => {
+            console.log('cards', cards);
+            this.cards = cards;
+            this.loading = false;
+        });
+    }
 }
+

@@ -9,7 +9,7 @@ export class CardAPIService {
     constructor(private http: HttpClient) {
     }
 
-    public getCards() {
+    public getCardList() {
         return this.http.get('/api/card_list/');
     }
 }
