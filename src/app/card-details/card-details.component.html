@@ -1,1 +1,11 @@
-<p>card-details works!</p>
+<div class="card-details">
+    <div class="card-details__name">
+        {{ card?.name }}
+    </div>
+    <div class="card-details__description">
+        {{ card?.text }}
+    </div>
+    <div class="card-details__type">
+        {{ card?.card_type | titlecase }}
+    </div>
+</div>

@@ -1,4 +1,9 @@
 <div class="card-list">
-    <app-card-list-item *ngFor="let card of cards" class="card-list__item"></app-card-list-item>
+    <app-card-list-item *ngFor="let card of cards"
+                        class="card-list__item"
+                        [isActive]="card.name === activeCard?.name"
+                        [card]="card"
+                        (click)="setActiveCard(card)">
+    </app-card-list-item>
     <div *ngIf="loading" class="loader spinner-border"></div>
 </div>

@@ -1,1 +1,8 @@
-<p>card-list-item works!</p>
+<div class="card" [ngClass]="{'card--active': isActive}">
+    <div class="card__name">
+        {{ card?.name }}
+    </div>
+    <div class="card__type">
+        {{ card?.card_type | titlecase }}
+    </div>
+</div>
