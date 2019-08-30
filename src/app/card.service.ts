@@ -7,6 +7,12 @@ import {Card} from './models/card.model';
 })
 export class CardService {
 
+    static CARD_TYPES: any = {
+        SPELL: 'spell',
+        TRAP: 'trap',
+        MONSTER: 'monster'
+    };
+
     public cardSubject: Subject<any> = new Subject<any>();
 
     constructor() {

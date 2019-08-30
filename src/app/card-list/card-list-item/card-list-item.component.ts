@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Card} from '../../models/card.model';
+import {CardService} from '../../card.service';
 
 @Component({
     selector: 'app-card-list-item',
@@ -10,6 +11,8 @@ export class CardListItemComponent implements OnInit {
 
     @Input() isActive: boolean;
     @Input() card: Card;
+
+    public CARD_TYPES = CardService.CARD_TYPES;
 
     constructor() {
     }

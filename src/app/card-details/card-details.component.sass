@@ -1,0 +1,54 @@
+@import "../../variables"
+
+.card-details
+  max-width: 1000px
+  height: 100%
+
+  &__content
+    display: flex
+    margin-top: $size-margin-big
+
+  &__about
+    margin-left: $size-margin-big
+
+  &__name
+    font-size: 2.5rem
+    font-weight: 300
+    line-height: 1.2
+
+  &__type
+    font-size: 1.2rem
+
+  &__monster-type
+      .level, .type
+        float: left
+        max-width: 135px
+        width: 100%
+
+  &__description
+    margin-top: $size-margin-big
+
+  &__image
+    display: flex
+    max-width: 268px
+    max-height: 385px
+    min-width: 268px
+    min-height: 385px
+    background: rgba(128, 128, 128, 0.2)
+
+    .image
+      width: 100%
+      height: auto
+
+.loader
+  margin: auto
+
+@media (max-width: 600px)
+  .card-details
+    &__content
+      display: block
+
+    &__image
+      min-width: auto
+      min-height: auto
+      margin: auto auto $size-margin-big

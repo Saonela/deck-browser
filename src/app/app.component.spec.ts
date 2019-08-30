@@ -33,6 +33,8 @@ describe('AppComponent', () => {
         expect(sidebar.classList.contains('active')).toBeFalsy();
         TestHelper.getSidebarToggleButton().click();
         expect(sidebar.classList.contains('active')).toBeTruthy();
+        TestHelper.getSidebarToggleButton().click();
+        expect(sidebar.classList.contains('active')).toBeFalsy();
     });
 
     const TestHelper = {

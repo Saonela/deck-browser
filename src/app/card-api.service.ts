@@ -6,6 +6,8 @@ import {HttpClient} from '@angular/common/http';
 })
 export class CardAPIService {
 
+    static IMAGE_BASE_URL: string = 'http://yugiohprices.com/api/card_image/';
+
     constructor(private http: HttpClient) {
     }
 

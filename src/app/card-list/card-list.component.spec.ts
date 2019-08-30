@@ -6,7 +6,7 @@ import {CardListItemComponent} from './card-list-item/card-list-item.component';
 import {CardService} from '../card.service';
 import {Card} from '../models/card.model';
 
-fdescribe('CardListComponent', () => {
+describe('CardListComponent', () => {
     let component: CardListComponent;
     let fixture: ComponentFixture<CardListComponent>;
 
@@ -43,7 +43,7 @@ fdescribe('CardListComponent', () => {
 
         expect(TestHelper.getLoader()).toBeFalsy();
         expect(TestHelper.getList().length).toBe(3);
-        expect(TestHelper.getListItem(1).innerText).toBe('Card 2');
+        expect(TestHelper.getListItem(1).innerText.trim()).toBe('Card 2');
 
         const card: Card = {name: 'Card 1'} as Card;
         expect(component.activeCard).toEqual(card);

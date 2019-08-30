@@ -29,8 +29,6 @@ export class CardListComponent implements OnInit {
     private getCardList() {
         this.loading = true;
         this.cardAPIService.getCardList().subscribe((cards: Card[]) => {
-            console.log('cards', cards);
-
             this.setActiveCard(cards[0]);
             this.cards = cards;
             this.loading = false;

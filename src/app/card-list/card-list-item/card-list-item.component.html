@@ -1,8 +1,12 @@
-<div class="card" [ngClass]="{'card--active': isActive}">
+<div class="card bg-dark mb-3" [ngClass]="{'card--active': isActive}">
     <div class="card__name">
         {{ card?.name }}
     </div>
-    <div class="card__type">
+    <div class="card__type"  [ngClass]="{
+            'spell-card-type-color': card?.card_type === CARD_TYPES.SPELL,
+            'trap-card-type-color': card?.card_type === CARD_TYPES.TRAP,
+            'monster-card-type-color': card?.card_type === CARD_TYPES.MONSTER
+    }">
         {{ card?.card_type | titlecase }}
     </div>
 </div>

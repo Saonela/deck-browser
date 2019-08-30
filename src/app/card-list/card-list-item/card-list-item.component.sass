@@ -1,3 +1,16 @@
+@import "../../../variables"
+
 .card
+  padding: $size-margin
+  cursor: pointer
+  font-size: 0.8rem
+
+  &__type
+    text-align: right
+    font-weight: bold
+    padding-top: 4px
+    margin-top: 4px
+    border-top: 1px solid $color-text
+
   &--active
-    border: 1px solid darkblue
+    border: 1px solid $color-text

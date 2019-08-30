@@ -1,11 +1,39 @@
 <div class="card-details">
     <div class="card-details__name">
-        {{ card?.name }}
+        {{ card?.name | titlecase }}
     </div>
-    <div class="card-details__description">
-        {{ card?.text }}
-    </div>
-    <div class="card-details__type">
-        {{ card?.card_type | titlecase }}
+    <div class="card-details__content">
+        <div class="card-details__image">
+            <div *ngIf="!isImageLoaded" class="loader spinner-border"></div>
+            <img *ngIf="card" class="image"
+                 [hidden]="!isImageLoaded"
+                 [src]="imageSrc"
+                 (load)="isImageLoaded = true">
+        </div>
+        <div *ngIf="card" class="card-details__about">
+            <div class="card-details__type" [ngClass]="{
+                    'spell-card-type-color': card.card_type === CARD_TYPES.SPELL,
+                    'trap-card-type-color': card.card_type === CARD_TYPES.TRAP,
+                    'monster-card-type-color': card.card_type === CARD_TYPES.MONSTER
+                }">
+                [{{ card.card_type | titlecase }}]
+            </div>
+            <div *ngIf="card.card_type === CARD_TYPES.MONSTER" class="card-details__monster-type">
+                <div class="stats-row">
+                    <div class="type">{{ card.type }}</div>
+                    <div class="family">Family: {{ card.family | titlecase}}</div>
+                </div>
+                <div class="stats-row">
+                    <div class="level">Level: {{ card.level }}</div>
+                    <div class="stats">ATK: {{card.atk}} DEF: {{card.def}}</div>
+                </div>
+            </div>
+            <div *ngIf="card.card_type !== CARD_TYPES.MONSTER" class="card-details__magic-type">
+                <div class="property">{{ card.property }}</div>
+            </div>
+            <div class="card-details__description">
+                {{ card.text }}
+            </div>
+        </div>
     </div>
 </div>
